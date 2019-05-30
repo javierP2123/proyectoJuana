@@ -3,37 +3,11 @@
 <title></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./stylesheets/style.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-  html,
-  body,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    font-family: "Lato", sans-serif
-  }
-
-  .mySlides {
-    display: none
-  }
-
-  .w3-tag,
-  .fa {
-    cursor: pointer
-  }
-
-  .w3-tag {
-    height: 150px;
-    width: 150px;
-    padding: 0;
-    margin-top: 100px
-  }
-</style>
-
+<script src="./javascripts/scripts.js" charset="utf-8"></script>
 <body>
 
   <!-- Links (sit on top) -->
@@ -168,18 +142,31 @@
 
         <form action="/calcular" id="form1" method="post">
 
+          <p>ESTATURA</p>
           <input type="number" id="a" name="a" value="">
 
-          <p>CIRCUNFEENCIA</p>
+          <p>EDAD</p>
           <input type="number" id="b" name="b" value="">
 
-          =
-          <output id="x" name="x" for="a b "></output>
-          <br><br>
-          <input type="submit" id="analisis">
-        </form>
+          <p>CIRCUNFERENCIA</p>
+          <input type="number" id="c" name="c" value="">
 
-        <p><strong>Note:</strong> The output element is not supported in Edge 12 or Internet Explorer and earlier versions.</p>
+          <p>¿Alguien de su familia ha padecido esta enfermedad?</p>
+
+          <label for="d">
+            <input type="radio" name="d" value="si">Si
+          </label>
+          <label for="d">
+            <input type="radio" name="d" value="no">No
+          </label>
+
+          <br><br>
+          <input type="submit" id="analisis" value="Calcular">
+          <input type="reset" value="Limpiar" onclick="document.getElementsByClassName('resultado')[0].innerHTML=''">
+
+
+        </form>
+        <div class="resultado"></div>
 
         <!-- Contacto -->
         <div class="w3-center w3-padding-64" id="contact">
@@ -223,104 +210,6 @@
         </div>
         <p> Derechos J.G.O.M ></p>
       </footer>
-
-      <script>
-        window.onload = function(e) {
-          document.getElementById('form1').addEventListener('submit', function(e) {
-            event.preventDefault();
-
-            var form = document.getElementById('form1');
-            var aaa = document.getElementById('a').value;
-            var bbb = document.getElementById('b').value;
-            var data = {
-              a: aaa,
-              b: bbb
-            };
-            // var data = new FormData(form);
-            console.log('datos del formulario: ' + JSON.stringify(data));
-
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-              if (this.readyState == 4 && this.status == 200) {
-                renderResults(this.response);
-              }
-            };
-            xmlhttp.open("POST", "/calcular", true);
-            xmlhttp.setRequestHeader("content-type", "application/json");
-
-            xmlhttp.send(JSON.stringify(data));
-          });
-        }
-
-        function renderResults(response) {
-          console.log('respuesta:' + response);
-          //pintar el resultado obtenido en la pagina
-        }
-        // Slideshow
-        var slideIndex = 1;
-        showDivs(slideIndex);
-
-        function plusDivs(n) {
-          showDivs(slideIndex += n);
-        }
-
-        function currentDiv(n) {
-          showDivs(slideIndex = n);
-        }
-
-        function showDivs(n) {
-          var i;
-          var x = document.getElementsByClassName("mySlides");
-          var dots = document.getElementsByClassName("demodots");
-          if (n > x.length) {
-            slideIndex = 1
-          }
-          if (n < 1) {
-            slideIndex = x.length
-          };
-          for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
-          }
-          for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" w3-white", "");
-          }
-          x[slideIndex - 1].style.display = "block";
-          dots[slideIndex - 1].className += " w3-white";
-        }
-
-        // Slideshow
-        var slideIndex = 1;
-        showDivs(slideIndex);
-
-        function plusDivs(n) {
-          showDivs(slideIndex += n);
-        }
-
-        function currentDiv(n) {
-          showDivs(slideIndex = n);
-        }
-
-        function showDivs(n) {
-          var i;
-          var x = document.getElementsByClassName("mySlides");
-          var dots = document.getElementsByClassName("demodots");
-          if (n > x.length) {
-            slideIndex = 1
-          }
-          if (n < 1) {
-            slideIndex = x.length
-          };
-          for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
-          }
-          for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" w3-white", "");
-          }
-          x[slideIndex - 1].style.display = "block";
-          dots[slideIndex - 1].className += " w3-white";
-        }
-      </script>
-
 </body>
 
 </html>

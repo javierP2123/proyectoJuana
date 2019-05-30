@@ -26,10 +26,25 @@ app.get('/', function(req, res, next) {
 });
 
 app.post('/calcular', function(req, res, next) {
-  console.log(req.body);//aqui esta el dato que viene del formulario, ver la consola
+  console.log(req.body); //aqui esta el dato que viene del formulario, ver la consola
+  var edad = req.body.b;
+  var estatura = req.body.a;
+  var circunferencia = req.body.c;
+  if (req.body.d == 'si') {
+    var antecedentes = 1;
+  } else {
+    var antecedentes = 0;
+  }
+  var pre = 1 / (1 + Math.exp(-(-5.30 + (edad) * 0.017 + circunferencia * 0.042 + estatura * (-0.028) + antecedentes * 0.91)));
   // calculos
+  if (pre >= 0.01) {
+    var preResult = 'ALTO';
+  } else{
+    var preResult = 'BAJO';
+  }
   var resultado = {
-    resultado: 00
+    resultadoNum: pre,
+    resultado: preResult
   }; //calculo
   res.json(resultado);
 });
