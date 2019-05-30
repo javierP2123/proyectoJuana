@@ -26,7 +26,7 @@ app.get('/', function(req, res, next) {
 });
 
 app.post('/calcular', function(req, res, next) {
-  console.log(req.body);
+  console.log(req.body);//aqui esta el dato que viene del formulario, ver la consola
   // calculos
   var resultado = {
     resultado: 00
@@ -52,3 +52,13 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+
+
+// descargar node.js e instalar
+// bajar todos estos archivos en una carpeta
+// abrir una consola en esta carpeta
+// ejecutar "npm i"
+// ejecutar "nodemon ./bin/www"
+// abrir en el navegador la url "localhost:8081"
+// ahi esta la pagina y el server corriendo, cuando se le envien datos desde el formulario, se veran en la consola

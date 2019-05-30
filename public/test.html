@@ -237,6 +237,7 @@
               b: bbb
             };
             // var data = new FormData(form);
+            console.log('datos del formulario: ' + JSON.stringify(data));
 
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
@@ -245,7 +246,9 @@
               }
             };
             xmlhttp.open("POST", "/calcular", true);
-            xmlhttp.send(data);
+            xmlhttp.setRequestHeader("content-type", "application/json");
+
+            xmlhttp.send(JSON.stringify(data));
           });
         }
 
